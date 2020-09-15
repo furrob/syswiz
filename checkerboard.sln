@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "checkerboard", "checkerboard.csproj", "{DAD02012-B9F9-41F1-9A7F-E775B5EEA8FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAD02012-B9F9-41F1-9A7F-E775B5EEA8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD02012-B9F9-41F1-9A7F-E775B5EEA8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD02012-B9F9-41F1-9A7F-E775B5EEA8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD02012-B9F9-41F1-9A7F-E775B5EEA8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6769A488-B889-4C05-A986-3D06E0DFED7F}
+	EndGlobalSection
+EndGlobal
