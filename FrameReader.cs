@@ -1,81 +1,85 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 
 namespace checkerboard
 {
     class FrameReader
     {
         string filePath;
-        int bitsPerSample;
+        
         private int width;
         private int heigth;
         private int frameYCounter = 0;
         private int frameUCounter = 0;
         private int frameVCounter = 0;
+       // public BinaryReader yuvBitStream { get; set; }
 
         public FrameReader(string filepath, int bitsPerpixel, int Width, int Heigth)
         {
             filePath = filepath;
-            bitsPerSample = bitsPerpixel;
+             
             width = Width;
             heigth = Heigth;
-
+            //BinaryReader yuvBitStream = new BinaryReader(File.Open(filepath, FileMode.Open));
         }
        
         //////////////////////////////////////////Ystart = (Yindex * w * h * bps) * 1.5   Yend = Ystart + w * h * bps
         /// Ustart = w * h * bps * (1 + (Uindex * 1.5))
         /// 
 
-        
-        public int[] getNextFrameY()
+
+        private byte[] readBitsFromFile(int begin,int end)
         {
-            int Ystart = ((frameYCounter * width * heigth * bitsPerSample)) * 3 / 2;
-            int Yend = Ystart + width * heigth * bitsPerSample - 1;
+            using (BinaryReader yuvBitstream = new BinaryReader(File.Open(filePath, FileMode.Open)))
+            {
+                yuvBitstream.BaseStream.Position = begin;
+                return yuvBitstream.ReadBytes(end - begin);
+            }
+        }
+
+        public byte[] getNextFrameY()
+        {
+            int Ystart = ((frameYCounter * width * heigth )) * 3 / 2; //begin
+            int Yend = Ystart + width * heigth   ; ///end
             ++frameYCounter;
-            return null;
+            return readBitsFromFile(Ystart, Yend);
         }
 
-        public int[] getNextFrameU()
+        public byte[] getNextFrameU()
         {
-            int Ustart = width * heigth * bitsPerSample * (1 + (frameUCounter * 3 / 2));
-            int Uend = Ustart + (width * heigth * bitsPerSample * 1/4) - 1;
+            int Ustart = width * heigth * (1 + (frameUCounter * 3 / 2));
+            int Uend = Ustart + (width * heigth *   1/4) ;
             ++frameUCounter;
-            return null;
+            return readBitsFromFile(Ustart, Uend); 
         }
 
-        public int[] getNextFrameV()
+        public byte[] getNextFrameV()
         {
-            int Vstart = width * heigth * bitsPerSample * (1 + (frameVCounter * 3 / 2)) + (width * heigth * bitsPerSample * 1 / 4);
-            int Vend = Vstart + (width * heigth * bitsPerSample * 1 / 4) - 1;
+            int Vstart = width * heigth *   (1 + (frameVCounter * 3 / 2)) + (width * heigth *   1 / 4);
+            int Vend = Vstart + (width * heigth *   1 / 4) ;
             ++frameVCounter;
-            return null;
+            return readBitsFromFile(Vstart, Vend); 
         }
         
         ////////////////////////////////////////// Michał się skichał  hyhyhyhyhyhyhyhyyhyhyhyhyhyhy
          
-        public int[] GetFrameY(int index)
+        public byte[] GetFrameY(int index)
         {
-            int Ystart = (index * width * heigth * bitsPerSample) * 3/2;
-            int Yend = Ystart + width * heigth * bitsPerSample - 1;
-            return null;
+            int Ystart = (index * width * heigth   ) * 3/2;
+            int Yend = Ystart + width * heigth   ;
+            return readBitsFromFile(Ystart, Yend);
         }
 
-        public int[] GetFrameU(int index)
+        public byte[] GetFrameU(int index)
         {
-            int Ustart = width * heigth * bitsPerSample * (1 + (index * 3 / 2));
-            int Uend = Ustart + (width * heigth * bitsPerSample * 1 / 4) - 1;
-            return null;
+            int Ustart = width * heigth * (1 + (index * 3 / 2));
+            int Uend = Ustart + (width * heigth * 1 / 4) ;
+            return readBitsFromFile(Ustart, Uend);
         }
-
-        public int[] GetFrameV(int index)
+            public byte[] GetFrameV(int index)
         {
-            int Vstart = width * heigth * bitsPerSample * (1 + (index * 3 / 2)) + (width * heigth * bitsPerSample * 1 / 4);
-            int Vend = Vstart + (width * heigth * bitsPerSample * 1 / 4) - 1;
-            return null;
-        }
+            int Vstart = width * heigth *   (1 + (index * 3 / 2)) + (width * heigth *   1 / 4);
+            int Vend = Vstart + (width * heigth *   1 / 4) ;
+                return readBitsFromFile(Vstart, Vend);
+            }
     }
 }

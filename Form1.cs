@@ -16,6 +16,7 @@ namespace checkerboard
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         
@@ -47,6 +48,16 @@ namespace checkerboard
             saveFileDialog.FileName = "output";
             saveFileDialog.DefaultExt = ".webm";
 
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            FrameReader temp = new FrameReader("C:/Users/Patryk/Desktop/gg.txt",8,4,4);
+            byte[] fefe = temp.getNextFrameY();
+            byte[] gege = temp.getNextFrameY();
+
+            MessageBox.Show("pipi");
 
         }
     }
