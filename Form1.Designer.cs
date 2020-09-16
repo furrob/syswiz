@@ -40,12 +40,22 @@
             this.buttonOutputFileSearch = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.label4 = new System.Windows.Forms.Label();
+            this.maskedTextBoxWidth = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.maskedTextBoxHeight = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.maskedTextBoxBitsPerSample = new System.Windows.Forms.MaskedTextBox();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonFFmpegSearch
             // 
             this.buttonFFmpegSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonFFmpegSearch.Location = new System.Drawing.Point(713, 4);
+            this.buttonFFmpegSearch.Location = new System.Drawing.Point(497, 4);
             this.buttonFFmpegSearch.Name = "buttonFFmpegSearch";
             this.buttonFFmpegSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonFFmpegSearch.TabIndex = 0;
@@ -59,7 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFFmegPath.Location = new System.Drawing.Point(90, 6);
             this.textBoxFFmegPath.Name = "textBoxFFmegPath";
-            this.textBoxFFmegPath.Size = new System.Drawing.Size(617, 20);
+            this.textBoxFFmegPath.Size = new System.Drawing.Size(401, 20);
             this.textBoxFFmegPath.TabIndex = 1;
             // 
             // label1
@@ -86,13 +96,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxInputFile.Location = new System.Drawing.Point(90, 32);
             this.textBoxInputFile.Name = "textBoxInputFile";
-            this.textBoxInputFile.Size = new System.Drawing.Size(617, 20);
+            this.textBoxInputFile.Size = new System.Drawing.Size(401, 20);
             this.textBoxInputFile.TabIndex = 4;
             // 
             // buttonInputFileSearch
             // 
             this.buttonInputFileSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonInputFileSearch.Location = new System.Drawing.Point(713, 30);
+            this.buttonInputFileSearch.Location = new System.Drawing.Point(497, 30);
             this.buttonInputFileSearch.Name = "buttonInputFileSearch";
             this.buttonInputFileSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonInputFileSearch.TabIndex = 5;
@@ -103,7 +113,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 61);
+            this.label3.Location = new System.Drawing.Point(12, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 6;
@@ -113,14 +123,15 @@
             // 
             this.textBoxOutputFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxOutputFile.Location = new System.Drawing.Point(90, 58);
+            this.textBoxOutputFile.Location = new System.Drawing.Point(90, 84);
             this.textBoxOutputFile.Name = "textBoxOutputFile";
-            this.textBoxOutputFile.Size = new System.Drawing.Size(617, 20);
+            this.textBoxOutputFile.Size = new System.Drawing.Size(401, 20);
             this.textBoxOutputFile.TabIndex = 7;
             // 
             // buttonOutputFileSearch
             // 
-            this.buttonOutputFileSearch.Location = new System.Drawing.Point(713, 56);
+            this.buttonOutputFileSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOutputFileSearch.Location = new System.Drawing.Point(497, 82);
             this.buttonOutputFileSearch.Name = "buttonOutputFileSearch";
             this.buttonOutputFileSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonOutputFileSearch.TabIndex = 8;
@@ -130,17 +141,107 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 218);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(584, 22);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(87, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Input video dimensions:";
+            // 
+            // maskedTextBoxWidth
+            // 
+            this.maskedTextBoxWidth.Location = new System.Drawing.Point(211, 58);
+            this.maskedTextBoxWidth.Mask = "9999";
+            this.maskedTextBoxWidth.Name = "maskedTextBoxWidth";
+            this.maskedTextBoxWidth.Size = new System.Drawing.Size(35, 20);
+            this.maskedTextBoxWidth.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(252, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(12, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "x";
+            // 
+            // maskedTextBoxHeight
+            // 
+            this.maskedTextBoxHeight.Location = new System.Drawing.Point(270, 58);
+            this.maskedTextBoxHeight.Mask = "9999";
+            this.maskedTextBoxHeight.Name = "maskedTextBoxHeight";
+            this.maskedTextBoxHeight.Size = new System.Drawing.Size(32, 20);
+            this.maskedTextBoxHeight.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(308, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(18, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "px";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(384, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(81, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Bits per sample:";
+            // 
+            // maskedTextBoxBitsPerSample
+            // 
+            this.maskedTextBoxBitsPerSample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskedTextBoxBitsPerSample.Enabled = false;
+            this.maskedTextBoxBitsPerSample.Location = new System.Drawing.Point(471, 58);
+            this.maskedTextBoxBitsPerSample.Mask = "99";
+            this.maskedTextBoxBitsPerSample.Name = "maskedTextBoxBitsPerSample";
+            this.maskedTextBoxBitsPerSample.Size = new System.Drawing.Size(20, 20);
+            this.maskedTextBoxBitsPerSample.TabIndex = 18;
+            this.maskedTextBoxBitsPerSample.Text = "8";
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Location = new System.Drawing.Point(497, 192);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.TabIndex = 19;
+            this.buttonStart.Text = "Start";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(22, 17);
+            this.statusLabel.Text = "---";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(584, 240);
+            this.Controls.Add(this.buttonStart);
+            this.Controls.Add(this.maskedTextBoxBitsPerSample);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.maskedTextBoxHeight);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.maskedTextBoxWidth);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonOutputFileSearch);
             this.Controls.Add(this.textBoxOutputFile);
@@ -151,8 +252,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxFFmegPath);
             this.Controls.Add(this.buttonFFmpegSearch);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "checkerboarding";
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,6 +276,15 @@
         private System.Windows.Forms.Button buttonOutputFileSearch;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxWidth;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxHeight;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxBitsPerSample;
+        private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }
 
