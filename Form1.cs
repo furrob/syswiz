@@ -142,6 +142,8 @@ namespace checkerboard
             buttonFFmpegSearch.Enabled = false;
             buttonInputFileSearch.Enabled = false;
             buttonOutputFileSearch.Enabled = false;
+            maskedTextBoxWidth.Enabled = false;
+            maskedTextBoxHeight.Enabled = false;
             textBoxFFmegPath.Enabled = false;
             textBoxInputFile.Enabled = false;
             textBoxOutputFile.Enabled = false;
@@ -313,7 +315,7 @@ namespace checkerboard
             }
             catch(Exception ex)
             {
-                MessageBox.Show("anlaki trzeba usunąć pliki tymczasowe ręcznie (wszystko w folderze wyjściowym)");
+                MessageBox.Show("anlaki trzeba usunąć pliki tymczasowe ręcznie (wszystko w folderze wyjściowym)\n" + ex.Message);
             }
 
             progressBar.Value = 0;
@@ -322,6 +324,8 @@ namespace checkerboard
             buttonFFmpegSearch.Enabled = true;
             buttonInputFileSearch.Enabled = true;
             buttonOutputFileSearch.Enabled = true;
+            maskedTextBoxWidth.Enabled = true;
+            maskedTextBoxHeight.Enabled = true;
             textBoxFFmegPath.Enabled = true;
             textBoxInputFile.Enabled = true;
             textBoxOutputFile.Enabled = true;

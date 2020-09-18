@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.buttonFFmpegSearch = new System.Windows.Forms.Button();
             this.textBoxFFmegPath = new System.Windows.Forms.TextBox();
@@ -253,6 +254,7 @@
             this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar.Location = new System.Drawing.Point(12, 133);
+            this.progressBar.MarqueeAnimationSpeed = 1;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(479, 23);
             this.progressBar.Step = 1;
@@ -283,6 +285,7 @@
             this.Controls.Add(this.textBoxFFmegPath);
             this.Controls.Add(this.buttonFFmpegSearch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "checkerboarding";
