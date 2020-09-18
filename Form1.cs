@@ -297,7 +297,7 @@ namespace checkerboard
 
             ffmpeg.WaitForExit();
 
-            args = String.Format("-i {0} -i {1} -map 0:v -map 1:a {2}",
+            args = String.Format("-i {0} -i {1} -map 0:v -map 1:a  -codec copy -shortest {2}",
                 intermediateFilePath, textBoxInputFile.Text, textBoxOutputFile.Text);
 
             ffmpeg.StartInfo.Arguments = args;
