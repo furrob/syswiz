@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Windows.Forms;
 
 namespace checkerboard
 {
@@ -7,18 +8,18 @@ namespace checkerboard
         string filePath;
         
         private int width;
-        private int heigth;
+        private int height;
         private int frameYCounter = 0;
         private int frameUCounter = 0;
         private int frameVCounter = 0;
        // public BinaryReader yuvBitStream { get; set; }
 
-        public FrameReader(string filepath, int bitsPerpixel, int Width, int Heigth)
+        public FrameReader(string filepath, int Width, int Height)
         {
             filePath = filepath;
              
             width = Width;
-            heigth = Heigth;
+            height = Height;
             //BinaryReader yuvBitStream = new BinaryReader(File.Open(filepath, FileMode.Open));
         }
        
@@ -38,24 +39,24 @@ namespace checkerboard
 
         public byte[] getNextFrameY()
         {
-            int Ystart = ((frameYCounter * width * heigth )) * 3 / 2; //begin
-            int Yend = Ystart + width * heigth   ; ///end
+            int Ystart = ((frameYCounter * width * height)) * 3 / 2; //begin
+            int Yend = Ystart + width * height   ; ///end
             ++frameYCounter;
             return readBitsFromFile(Ystart, Yend);
         }
 
         public byte[] getNextFrameU()
         {
-            int Ustart = width * heigth * (1 + (frameUCounter * 3 / 2));
-            int Uend = Ustart + (width * heigth *   1/4) ;
+            int Ustart = width * height + (width * height + (width * height) / 2) * frameUCounter;
+            int Uend = Ustart + (width * height * 1 / 4);
             ++frameUCounter;
             return readBitsFromFile(Ustart, Uend); 
         }
 
         public byte[] getNextFrameV()
         {
-            int Vstart = width * heigth *   (1 + (frameVCounter * 3 / 2)) + (width * heigth *   1 / 4);
-            int Vend = Vstart + (width * heigth *   1 / 4) ;
+            int Vstart = width * height + (width * height / 4) + (width * height + (width * height) / 2) * frameVCounter;
+            int Vend = Vstart + (width * height * 1 / 4);
             ++frameVCounter;
             return readBitsFromFile(Vstart, Vend); 
         }
@@ -64,22 +65,22 @@ namespace checkerboard
          
         public byte[] GetFrameY(int index)
         {
-            int Ystart = (index * width * heigth   ) * 3/2;
-            int Yend = Ystart + width * heigth   ;
+            int Ystart = (index * width * height) * 3 / 2;
+            int Yend = Ystart + width * height   ;
             return readBitsFromFile(Ystart, Yend);
         }
 
         public byte[] GetFrameU(int index)
         {
-            int Ustart = width * heigth * (1 + (index * 3 / 2));
-            int Uend = Ustart + (width * heigth * 1 / 4) ;
+            int Ustart = width * height + (width * height + (width * height) / 2) * index;
+            int Uend = Ustart + (width * height * 1 / 4) ;
             return readBitsFromFile(Ustart, Uend);
         }
-            public byte[] GetFrameV(int index)
+        public byte[] GetFrameV(int index)
         {
-            int Vstart = width * heigth *   (1 + (index * 3 / 2)) + (width * heigth *   1 / 4);
-            int Vend = Vstart + (width * heigth *   1 / 4) ;
-                return readBitsFromFile(Vstart, Vend);
-            }
+            int Vstart = width * height + (width * height / 4) + (width * height + (width * height) / 2) * index;
+            int Vend = Vstart + (width * height * 1 / 4);
+            return readBitsFromFile(Vstart, Vend);
+        }
     }
 }

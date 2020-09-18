@@ -51,6 +51,8 @@
             this.maskedTextBoxBitsPerSample = new System.Windows.Forms.MaskedTextBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,7 +147,7 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 218);
+            this.statusStrip.Location = new System.Drawing.Point(0, 159);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(584, 22);
             this.statusStrip.TabIndex = 10;
@@ -224,7 +226,7 @@
             // buttonStart
             // 
             this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStart.Location = new System.Drawing.Point(497, 192);
+            this.buttonStart.Location = new System.Drawing.Point(497, 133);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 19;
@@ -237,11 +239,29 @@
             this.timer.Interval = 5000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(12, 133);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(479, 23);
+            this.progressBar.Step = 1;
+            this.progressBar.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 240);
+            this.ClientSize = new System.Drawing.Size(584, 181);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.maskedTextBoxBitsPerSample);
             this.Controls.Add(this.label7);
@@ -260,6 +280,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxFFmegPath);
             this.Controls.Add(this.buttonFFmpegSearch);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "checkerboarding";
@@ -294,6 +315,8 @@
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.Timer timer;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 
