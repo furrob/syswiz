@@ -280,12 +280,12 @@ namespace checkerboard
 
             statusLabel.Text = "Calling FFmpeg again...";
 
-            String intermediateFilePath = Path.GetDirectoryName(textBoxOutputFile.Text) + "\\out_muted.webm";
+            //String intermediateFilePath = Path.GetDirectoryName(textBoxOutputFile.Text) + "\\out_muted.webm";
 
             //"-s {0}x{1} -i {2} -c:v libvpx-vp9 -crf 30 -b:v 0 {3}"
             //kolejne odpalenie ffmpega żeby wypluł webm z yuv CRF JEST DO STEROWANIA JAKOŚCIĄ MOŻNA TO DAĆ DO WYBORU!!!!!!!!!!!!!!!!!!
-            String args = String.Format("-s {0}x{1} -i {2} -c:v libvpx-vp9 -crf 30 -b:v 0 {3}",
-                result.VideoWidth, result.VideoHeight, result.OutTempFilePath, intermediateFilePath);
+            String args = String.Format("-s {0}x{1} -i {2} -i {3} -map 0:v -map 1:a -c:v libvpx-vp9 -crf 30 -b:v 0 {4}",
+                result.VideoWidth, result.VideoHeight, result.OutTempFilePath, textBoxInputFile.Text, textBoxOutputFile.Text);
 
             //odpalenie ffmpega żeby wypluł plik yuv do obróbki
             Process ffmpeg = new Process();
@@ -297,14 +297,14 @@ namespace checkerboard
 
             ffmpeg.WaitForExit();
 
-            args = String.Format("-i {0} -i {1} -map 0:v -map 1:a  -codec copy -shortest {2}",
-                intermediateFilePath, textBoxInputFile.Text, textBoxOutputFile.Text);
+            //args = String.Format("-i {0} -i {1} -map 0:v -map 1:a  -codec copy -shortest {2}",
+                //intermediateFilePath, textBoxInputFile.Text, textBoxOutputFile.Text);
 
-            ffmpeg.StartInfo.Arguments = args;
+            //ffmpeg.StartInfo.Arguments = args;
 
-            ffmpeg.Start();
+            //ffmpeg.Start();
 
-            ffmpeg.WaitForExit();
+            //ffmpeg.WaitForExit();
 
             try
             {
@@ -328,6 +328,16 @@ namespace checkerboard
 
             statusLabel.Text = "Done";
             resetTimer();
+        }
+
+        private void maskedTextBoxWidth_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxWidth.Select(0, maskedTextBoxWidth.Text.Length);
+        }
+
+        private void maskedTextBoxHeight_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxHeight.Select(0, maskedTextBoxHeight.Text.Length);
         }
     }
 

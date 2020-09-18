@@ -175,6 +175,7 @@
             this.maskedTextBoxWidth.Name = "maskedTextBoxWidth";
             this.maskedTextBoxWidth.Size = new System.Drawing.Size(35, 20);
             this.maskedTextBoxWidth.TabIndex = 13;
+            this.maskedTextBoxWidth.Click += new System.EventHandler(this.maskedTextBoxWidth_Click);
             // 
             // label5
             // 
@@ -192,6 +193,7 @@
             this.maskedTextBoxHeight.Name = "maskedTextBoxHeight";
             this.maskedTextBoxHeight.Size = new System.Drawing.Size(32, 20);
             this.maskedTextBoxHeight.TabIndex = 15;
+            this.maskedTextBoxHeight.Click += new System.EventHandler(this.maskedTextBoxHeight_Click);
             // 
             // label6
             // 
