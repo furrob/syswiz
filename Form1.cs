@@ -16,7 +16,6 @@ namespace checkerboard
         public Form1()
         {
             InitializeComponent();
-            
         }
 
         
@@ -60,18 +59,21 @@ namespace checkerboard
             {
                 //jak pliku z ffmpegiem ni ma
                 statusLabel.Text = "Path to ffmpeg.exe is not valid"; //dodać jakieś wygaszanie tego napisu czy coś
+                resetTimer();
                 return;
             }
 
             if(!File.Exists(textBoxInputFile.Text))
             {
                 statusLabel.Text = "Path to input file is not valid";
+                resetTimer();
                 return;
             }
 
             if(!Directory.Exists(Path.GetDirectoryName(textBoxOutputFile.Text)))
             {
                 statusLabel.Text = "Output directory does not exist";
+                resetTimer();
                 return;
             }
 
@@ -80,25 +82,36 @@ namespace checkerboard
                 if(int.Parse(maskedTextBoxWidth.Text) <= 0)
                 {
                     statusLabel.Text = "Input video width set incorrectly";
+                    resetTimer();
                     return;
                 }
 
                 if(int.Parse(maskedTextBoxHeight.Text) <= 0)
                 {
                     statusLabel.Text = "Input video height set incorrectly";
+                    resetTimer();
                     return;
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Wrong video dimensions\n" + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Incorrect video dimensions\n" + ex.Message, "Error", MessageBoxButtons.OK);
                 return;
             }
-            
+
+            if(File.Exists(textBoxOutputFile.Text)) 
+            {
+                var result = MessageBox.Show(String.Format("File {0} already exist in output directory. Override it?", Path.GetFileName(textBoxOutputFile.Text)),
+                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(result == DialogResult.No)
+                    return;
+            }
+
+            String tempFilePath = Path.GetDirectoryName(textBoxOutputFile.Text) + "\\temp.yuv";
 
             //argumenty do ffmpega
-            String args = String.Format("-i {0} -c:v rawvideo -pix_fmt yuv420p D:/temp.yuv",
-                textBoxInputFile.Text);
+            String args = String.Format("-i {0} -c:v rawvideo -pix_fmt yuv420p {1}",
+                textBoxInputFile.Text, tempFilePath);
 
             //odpalenie ffmpega żeby wypluł plik yuv do obróbki
             Process ffmpeg = new Process();
@@ -106,20 +119,32 @@ namespace checkerboard
             ffmpeg.StartInfo.FileName = textBoxFFmegPath.Text;
             ffmpeg.StartInfo.Arguments = args;
 
+            statusLabel.Text = "Calling FFmpeg...";
+            resetTimer();
+
             ffmpeg.Start();
 
             ffmpeg.WaitForExit();
             statusLabel.Text = String.Empty;
+
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-            FrameReader temp = new FrameReader("C:/Users/Patryk/Desktop/gg.txt",8,4,4);
-            byte[] fefe = temp.getNextFrameY();
-            byte[] gege = temp.getNextFrameY();
+            statusLabel.Text = String.Empty;
+            timer.Stop();
+        }
 
-            MessageBox.Show("pipi");
-
+        private void resetTimer()
+        {
+            if(timer.Enabled)
+            {
+                timer.Interval = 5000;
+            }
+            else
+            {
+                timer.Start();
+            }
         }
     }
 

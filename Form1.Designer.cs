@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.buttonFFmpegSearch = new System.Windows.Forms.Button();
             this.textBoxFFmegPath = new System.Windows.Forms.TextBox();
@@ -39,7 +40,8 @@
             this.textBoxOutputFile = new System.Windows.Forms.TextBox();
             this.buttonOutputFileSearch = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.maskedTextBoxWidth = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,8 +50,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.maskedTextBoxBitsPerSample = new System.Windows.Forms.MaskedTextBox();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1.SuspendLayout();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonFFmpegSearch
@@ -139,15 +141,21 @@
             this.buttonOutputFileSearch.UseVisualStyleBackColor = true;
             this.buttonOutputFileSearch.Click += new System.EventHandler(this.buttonOutputFileSearch_Click);
             // 
-            // statusStrip1
+            // statusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 218);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(584, 22);
-            this.statusStrip1.TabIndex = 10;
-            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip.Location = new System.Drawing.Point(0, 218);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(584, 22);
+            this.statusStrip.TabIndex = 10;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(22, 17);
+            this.statusLabel.Text = "---";
             // 
             // label4
             // 
@@ -215,6 +223,7 @@
             // 
             // buttonStart
             // 
+            this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStart.Location = new System.Drawing.Point(497, 192);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
@@ -223,11 +232,10 @@
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // statusLabel
+            // timer
             // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(22, 17);
-            this.statusLabel.Text = "---";
+            this.timer.Interval = 5000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // Form1
             // 
@@ -242,7 +250,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.maskedTextBoxWidth);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.buttonOutputFileSearch);
             this.Controls.Add(this.textBoxOutputFile);
             this.Controls.Add(this.label3);
@@ -255,8 +263,8 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "checkerboarding";
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,7 +283,7 @@
         private System.Windows.Forms.TextBox textBoxOutputFile;
         private System.Windows.Forms.Button buttonOutputFileSearch;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxWidth;
         private System.Windows.Forms.Label label5;
@@ -285,6 +293,7 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxBitsPerSample;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
