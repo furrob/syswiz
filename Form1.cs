@@ -98,6 +98,13 @@ namespace checkerboard
                     resetTimer();
                     return;
                 }
+
+                if(float.Parse(maskedTextBoxFPS.Text) <= 0)
+                {
+                    statusLabel.Text = "Input video FPS set incorrectly";
+                    resetTimer();
+                    return;
+                }
             }
             catch(Exception ex)
             {
@@ -144,6 +151,7 @@ namespace checkerboard
             buttonOutputFileSearch.Enabled = false;
             maskedTextBoxWidth.Enabled = false;
             maskedTextBoxHeight.Enabled = false;
+            maskedTextBoxFPS.Enabled = false;
             textBoxFFmegPath.Enabled = false;
             textBoxInputFile.Enabled = false;
             textBoxOutputFile.Enabled = false;
@@ -188,9 +196,12 @@ namespace checkerboard
             byte[] combinedUFrame = new byte[videoWidth * videoHeight];
             byte[] combinedVFrame = new byte[videoWidth * videoHeight];
             //miejsce na wejściowe
-            byte[] input1Y = frameReader.getNextFrameY();
-            byte[] input1U = frameReader.getNextFrameU();
-            byte[] input1V = frameReader.getNextFrameV();
+            byte[] input1Y;
+            frameReader.getNextFrameY(out input1Y);
+            byte[] input1U;
+            frameReader.getNextFrameU(out input1U);
+            byte[] input1V;
+            frameReader.getNextFrameV(out input1V);
 
             byte[] input2Y;
             byte[] input2U;
@@ -204,9 +215,9 @@ namespace checkerboard
                 //każda klatka 
                 for(long i = 0; i < inputFrameCount - 1; ++i)
                 {
-                    input2Y = frameReader.getNextFrameY();
-                    input2U = frameReader.getNextFrameU();
-                    input2V = frameReader.getNextFrameV();
+                    frameReader.getNextFrameY(out input2Y);
+                    frameReader.getNextFrameU(out input2U);
+                    frameReader.getNextFrameV(out input2V);
 
                     long idx;
 
@@ -286,8 +297,8 @@ namespace checkerboard
 
             //"-s {0}x{1} -i {2} -c:v libvpx-vp9 -crf 30 -b:v 0 {3}"
             //kolejne odpalenie ffmpega żeby wypluł webm z yuv CRF JEST DO STEROWANIA JAKOŚCIĄ MOŻNA TO DAĆ DO WYBORU!!!!!!!!!!!!!!!!!!
-            String args = String.Format("-s {0}x{1} -i {2} -i {3} -map 0:v -map 1:a -c:v libvpx-vp9 -crf 30 -b:v 0 {4}",
-                result.VideoWidth, result.VideoHeight, result.OutTempFilePath, textBoxInputFile.Text, textBoxOutputFile.Text);
+            String args = String.Format("-s {0}x{1} -i {2} -i {3} -map 0:v -map 1:a -c:v libvpx-vp9 -crf 30 -b:v 0 -r {4} {5}", //-r dla framerate TODO Dodać to kurcze
+                result.VideoWidth, result.VideoHeight, result.OutTempFilePath, textBoxInputFile.Text, float.Parse(maskedTextBoxFPS.Text), textBoxOutputFile.Text);
 
             //odpalenie ffmpega żeby wypluł plik yuv do obróbki
             Process ffmpeg = new Process();
@@ -326,6 +337,7 @@ namespace checkerboard
             buttonOutputFileSearch.Enabled = true;
             maskedTextBoxWidth.Enabled = true;
             maskedTextBoxHeight.Enabled = true;
+            maskedTextBoxFPS.Enabled = true;
             textBoxFFmegPath.Enabled = true;
             textBoxInputFile.Enabled = true;
             textBoxOutputFile.Enabled = true;
@@ -342,6 +354,11 @@ namespace checkerboard
         private void maskedTextBoxHeight_Click(object sender, EventArgs e)
         {
             maskedTextBoxHeight.Select(0, maskedTextBoxHeight.Text.Length);
+        }
+
+        private void maskedTextBoxFPS_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFPS.Select(0, maskedTextBoxFPS.Text.Length);
         }
     }
 

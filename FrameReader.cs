@@ -22,65 +22,65 @@ namespace checkerboard
             height = Height;
             //BinaryReader yuvBitStream = new BinaryReader(File.Open(filepath, FileMode.Open));
         }
-       
+
         //////////////////////////////////////////Ystart = (Yindex * w * h * bps) * 1.5   Yend = Ystart + w * h * bps
         /// Ustart = w * h * bps * (1 + (Uindex * 1.5))
         /// 
 
 
-        private byte[] readBitsFromFile(int begin,int end)
+        private void readBitsFromFile(long begin, long end, out byte[] bytes)
         {
             using (BinaryReader yuvBitstream = new BinaryReader(File.Open(filePath, FileMode.Open)))
             {
                 yuvBitstream.BaseStream.Position = begin;
-                return yuvBitstream.ReadBytes(end - begin);
+                bytes = yuvBitstream.ReadBytes((int)(end - begin));
             }
         }
 
-        public byte[] getNextFrameY()
+        public void getNextFrameY(out byte[] bytes)
         {
-            int Ystart = ((frameYCounter * width * height)) * 3 / 2; //begin
-            int Yend = Ystart + width * height   ; ///end
+            long Ystart = ((frameYCounter * width * height)) * 3L / 2L; //begin
+            long Yend = (long)(Ystart + width * height); ///end
             ++frameYCounter;
-            return readBitsFromFile(Ystart, Yend);
+            readBitsFromFile(Ystart, Yend, out bytes);
         }
 
-        public byte[] getNextFrameU()
+        public void getNextFrameU(out byte[] bytes)
         {
-            int Ustart = width * height + (width * height + (width * height) / 2) * frameUCounter;
-            int Uend = Ustart + (width * height * 1 / 4);
+            long Ustart = width * height + (width * height + (width * height) / 2L) * frameUCounter;
+            long Uend = (long)(Ustart + (width * height * 1L / 4L));
             ++frameUCounter;
-            return readBitsFromFile(Ustart, Uend); 
+            readBitsFromFile(Ustart, Uend, out bytes); 
         }
 
-        public byte[] getNextFrameV()
+        public void getNextFrameV(out byte[] bytes)
         {
-            int Vstart = width * height + (width * height / 4) + (width * height + (width * height) / 2) * frameVCounter;
-            int Vend = Vstart + (width * height * 1 / 4);
+            long Vstart = width * height + (width * height / 4) + (width * height + (width * height) / 2L) * frameVCounter;
+            long Vend = (long)(Vstart + (width * height * 1L / 4L));
             ++frameVCounter;
-            return readBitsFromFile(Vstart, Vend); 
+            readBitsFromFile(Vstart, Vend, out bytes); 
         }
         
         ////////////////////////////////////////// Michał się skichał  hyhyhyhyhyhyhyhyyhyhyhyhyhyhy
          
-        public byte[] GetFrameY(int index)
+        public void GetFrameY(int index, out byte[] bytes)
         {
-            int Ystart = (index * width * height) * 3 / 2;
-            int Yend = Ystart + width * height   ;
-            return readBitsFromFile(Ystart, Yend);
+            long Ystart = (index * width * height) * 3L / 2L;
+            long Yend = (long)(Ystart + width * height);
+            readBitsFromFile(Ystart, Yend, out bytes);
         }
 
-        public byte[] GetFrameU(int index)
+        public void GetFrameU(int index, out byte[] bytes)
         {
-            int Ustart = width * height + (width * height + (width * height) / 2) * index;
-            int Uend = Ustart + (width * height * 1 / 4) ;
-            return readBitsFromFile(Ustart, Uend);
+            long Ustart = width * height + (width * height + (width * height) / 2L) * index;
+            long Uend = (long)(Ustart + (width * height * 1L / 4L));
+            readBitsFromFile(Ustart, Uend, out bytes);
         }
-        public byte[] GetFrameV(int index)
+        public void GetFrameV(int index, out byte[] bytes)
         {
-            int Vstart = width * height + (width * height / 4) + (width * height + (width * height) / 2) * index;
-            int Vend = Vstart + (width * height * 1 / 4);
-            return readBitsFromFile(Vstart, Vend);
+            long Vstart = width * height + (width * height / 4L) + (width * height + (width * height) / 2L) * index;
+            long Vend = (long)(Vstart + (width * height * 1L / 4L));
+            readBitsFromFile(Vstart, Vend, out bytes);
         }
     }
 }

@@ -54,6 +54,8 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.maskedTextBoxFPS = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +120,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 87);
+            this.label3.Location = new System.Drawing.Point(12, 113);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 6;
@@ -128,7 +130,7 @@
             // 
             this.textBoxOutputFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxOutputFile.Location = new System.Drawing.Point(90, 84);
+            this.textBoxOutputFile.Location = new System.Drawing.Point(90, 110);
             this.textBoxOutputFile.Name = "textBoxOutputFile";
             this.textBoxOutputFile.Size = new System.Drawing.Size(401, 20);
             this.textBoxOutputFile.TabIndex = 7;
@@ -136,7 +138,7 @@
             // buttonOutputFileSearch
             // 
             this.buttonOutputFileSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOutputFileSearch.Location = new System.Drawing.Point(497, 82);
+            this.buttonOutputFileSearch.Location = new System.Drawing.Point(497, 108);
             this.buttonOutputFileSearch.Name = "buttonOutputFileSearch";
             this.buttonOutputFileSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonOutputFileSearch.TabIndex = 8;
@@ -148,7 +150,7 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 159);
+            this.statusStrip.Location = new System.Drawing.Point(0, 168);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(584, 22);
             this.statusStrip.TabIndex = 10;
@@ -229,7 +231,7 @@
             // buttonStart
             // 
             this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStart.Location = new System.Drawing.Point(497, 133);
+            this.buttonStart.Location = new System.Drawing.Point(497, 142);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 19;
@@ -253,18 +255,38 @@
             // 
             this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar.Location = new System.Drawing.Point(12, 133);
+            this.progressBar.Location = new System.Drawing.Point(12, 142);
             this.progressBar.MarqueeAnimationSpeed = 1;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(479, 23);
             this.progressBar.Step = 1;
             this.progressBar.TabIndex = 20;
             // 
+            // maskedTextBoxFPS
+            // 
+            this.maskedTextBoxFPS.Location = new System.Drawing.Point(123, 84);
+            this.maskedTextBoxFPS.Mask = "99";
+            this.maskedTextBoxFPS.Name = "maskedTextBoxFPS";
+            this.maskedTextBoxFPS.Size = new System.Drawing.Size(18, 20);
+            this.maskedTextBoxFPS.TabIndex = 21;
+            this.maskedTextBoxFPS.Click += new System.EventHandler(this.maskedTextBoxFPS_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(87, 87);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "FPS:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 181);
+            this.ClientSize = new System.Drawing.Size(584, 190);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.maskedTextBoxFPS);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.maskedTextBoxBitsPerSample);
@@ -322,6 +344,8 @@
         private System.Windows.Forms.Timer timer;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxFPS;
+        private System.Windows.Forms.Label label8;
     }
 }
 
